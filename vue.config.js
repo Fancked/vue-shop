@@ -1,5 +1,5 @@
 module.exports = {
-  publicPath: '/',
+  publicPath: './',
   configureWebpack: {
     resolve: {
       // 配置路径别名

@@ -1,32 +1,22 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <keep-alive :include="['home', 'category']">
+      <router-view />
+    </keep-alive>
+    <tab-bar v-if="tabBarShow" />
   </div>
 </template>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+let res =
+  navigator.userAgent.indexOf('Android') !== -1 || navigator.userAgent.indexOf('iPhone') !== -1;
+if (!res) {
+  confirm('请将设备设为手机以获得更好体验');
 }
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+import TabBar from '@/components/Tabbar';
+import mixin from '@/plugins/mixin/mixin.js';
+export default {
+  components: { TabBar },
+  mixins: [mixin],
+};
+</script>
+<style lang="scss"></style>

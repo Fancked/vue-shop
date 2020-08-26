@@ -9,11 +9,11 @@
     <van-cell @click="loginClick">
       <van-row>
         <van-col :span="8">
-          <van-image :src="defaultPic" class="user-pic-img" fit="cover" round width="80%" />
+          <van-image :src="defaultPic" class="user-pic-img" fit="cover" round width="10vh" height="10vh" />
         </van-col>
         <van-col>
           <div class="login">
-            登录
+            {{ loginInfo }}
           </div>
         </van-col>
       </van-row>
@@ -35,11 +35,17 @@ export default {
       defaultPic: 'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1598251862&di=ff519fb002e9c57e709e77b61d657f84&src=http://a1.att.hudong.com/05/00/01300000194285122188000535877.jpg',
     };
   },
-  computed: {},
+  computed: {
+    loginInfo() {
+      return this.$store.state.ifLogined ? this.$store.state.currentUser.tel : '请登录';
+    },
+  },
   watch: {},
   methods: {
     loginClick() {
-      this.$router.push('/login');
+      if (!this.$store.state.ifLogined) {
+        this.$router.push('/login');
+      }
     },
   },
   created() {},

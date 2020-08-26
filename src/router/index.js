@@ -23,6 +23,8 @@ import Profile from '../views/profile/Profile';
 import Detail from '../views/detail/Detail';
 import Categorl from '../views/categorl/Categorl';
 import Login from '../views/login/Login';
+import Register from '../views/register/Register';
+
 // 路由配置
 const routes = [
   { path: '/', redirect: '/home' },
@@ -33,12 +35,12 @@ const routes = [
   { path: '/detail', name: 'detail', component: Detail },
   { path: '/categorl', name: 'categorl', component: Categorl },
   { path: '/login', name: 'login', component: Login },
+  { path: '/register', name: 'register', component: Register },
 ];
 
 const router = new VueRouter({
   // mode: 'history',
   mode: 'hash',
-  // base: process.env.NODE_ENV === 'production' ? '/shop' : '/',
   routes,
 });
 

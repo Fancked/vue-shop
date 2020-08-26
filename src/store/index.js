@@ -8,6 +8,12 @@ export default new Vuex.Store({
     tabBarShow: true,
     collectList: [],
     cartList: [],
+    ifLogined: false,
+    userList: [],
+    currentUser: null,
+  },
+  getters: {
+    getUserInfo: state => tel => state.userList.find(user => user.tel === tel),
   },
   mutations: {
     setTabBarShow(state, ifShow) {
@@ -51,6 +57,21 @@ export default new Vuex.Store({
     cartItemNumMinus(state, idx) {
       if (state.cartList[idx].cart_num === 1) return;
       state.cartList[idx].cart_num -= 1;
+    },
+    userListAdd(state, user) {
+      state.userList.push(user);
+    },
+    toggleLogined(state, userInfo) {
+      if (!state.ifLogined) {
+        let temp = state.userList.find(user => user.tel === userInfo.tel);
+        if (temp && temp.password === userInfo.password) {
+          state.currentUser = temp;
+          state.ifLogined = !state.ifLogined;
+        }
+      } else {
+        state.currentUser = null;
+        state.ifLogined = !state.ifLogined;
+      }
     },
   },
   actions: {},

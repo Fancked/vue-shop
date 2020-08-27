@@ -1,5 +1,8 @@
 # shop
 
+## Project preview
+http://fancked.gitee.io/vue-shop/index.html
+
 ## Project setup
 ```
 npm install

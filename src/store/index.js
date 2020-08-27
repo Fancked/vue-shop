@@ -61,7 +61,7 @@ export default new Vuex.Store({
     userListAdd(state, user) {
       state.userList.push(user);
     },
-    toggleLogined(state, userInfo) {
+    toggleLogined(state, userInfo = null) {
       if (!state.ifLogined) {
         let temp = state.userList.find(user => user.tel === userInfo.tel);
         if (temp && temp.password === userInfo.password) {
@@ -69,7 +69,7 @@ export default new Vuex.Store({
           state.ifLogined = !state.ifLogined;
         }
       } else {
-        state.currentUser = null;
+        state.currentUser = userInfo;
         state.ifLogined = !state.ifLogined;
       }
     },

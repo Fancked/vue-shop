@@ -1,46 +1,68 @@
 <!--  -->
 <template>
-<div>
-  <van-sticky :offset-top="0">
-    <van-nav-bar title="购物车" />
-  </van-sticky>
+  <div>
+    <van-sticky :offset-top="0">
+      <van-nav-bar :title="$t('title.cart')" />
+    </van-sticky>
 
-  <van-cell v-show="this.cartList.length == 0" title="您的购物车空空如也" />
+    <van-cell v-show="this.cartList.length == 0" title="您的购物车空空如也" />
 
-  <van-checkbox-group v-model="result" ref="checkboxGroup" class="checkboxGroup" @change="checkChange">
-    <van-cell-group>
-      <van-cell class="van-cell" v-for="(item, index) in cartList" :key="index" @click.native="toggle(index)">
-        <van-swipe-cell>
-          <van-card :price="item.goods_price" :title="item.goods_name" class="goods-card" :thumb="item.goods_small_logo">
-            <template #bottom>
-              <div class="card-num-bar">
-                <van-button size="small" @click.stop="numminus(index)">-</van-button>
-                <span class="card-num">{{ item.cart_num }}</span>
-                <van-button size="small" @click.stop="numadd(index)">+</van-button>
-              </div>
+    <van-checkbox-group
+      v-model="result"
+      ref="checkboxGroup"
+      class="checkboxGroup"
+      @change="checkChange"
+    >
+      <van-cell-group>
+        <van-cell
+          class="van-cell"
+          v-for="(item, index) in cartList"
+          :key="index"
+          @click.native="toggle(index)"
+        >
+          <van-swipe-cell>
+            <van-card
+              :price="item.goods_price"
+              :title="item.goods_name"
+              class="goods-card"
+              :thumb="item.goods_small_logo"
+            >
+              <template #bottom>
+                <div class="card-num-bar">
+                  <van-button size="small" @click.stop="numminus(index)">-</van-button>
+                  <span class="card-num">{{ item.cart_num }}</span>
+                  <van-button size="small" @click.stop="numadd(index)">+</van-button>
+                </div>
+              </template>
+            </van-card>
+            <template #right>
+              <van-button
+                square
+                text="删除"
+                type="danger"
+                class="delete-button"
+                @click="delCartList(item)"
+              />
             </template>
-          </van-card>
-          <template #right>
-            <van-button square text="删除" type="danger" class="delete-button" @click="delCartList(item)" />
+          </van-swipe-cell>
+          <template #icon>
+            <van-checkbox :name="item" ref="checkboxes" />
           </template>
-        </van-swipe-cell>
-        <template #icon>
-          <van-checkbox :name="item" ref="checkboxes" />
-        </template>
-      </van-cell>
-    </van-cell-group>
-  </van-checkbox-group>
+        </van-cell>
+      </van-cell-group>
+    </van-checkbox-group>
 
-  <div class="cart-page">
-    <van-submit-bar custom-class="van-submit-bar" :price="totalPrice" button-text="提交订单" @submit="onSubmit">
-      <van-checkbox v-model="checked" @click="toggleAll">全选</van-checkbox>
-      <!-- <template #tip>
-        你的收货地址不支持同城送,
-        <span @click="onClickEditAddress">修改地址</span>
-      </template>-->
-    </van-submit-bar>
+    <div class="cart-page">
+      <van-submit-bar
+        custom-class="van-submit-bar"
+        :price="totalPrice"
+        button-text="提交订单"
+        @submit="onSubmit"
+      >
+        <van-checkbox v-model="checked" @click="toggleAll">全选</van-checkbox>
+      </van-submit-bar>
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -60,7 +82,6 @@ export default {
       return 100 * this.result.reduce((total, e) => total + e.cart_num * e.goods_price, 0);
     },
   },
-  watch: {},
   methods: {
     // onClickEditAddress() {},
     onSubmit() {
@@ -126,15 +147,6 @@ export default {
       this.$store.commit('cartListRm', item);
     },
   },
-  created() {},
-  mounted() {},
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
 };
 </script>
 

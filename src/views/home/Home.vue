@@ -2,7 +2,7 @@
 <template>
   <div class="home-page">
     <van-sticky :offset-top="0">
-      <van-nav-bar title="商城首页" />
+      <van-nav-bar :title="$t('title.home')" />
       <van-search v-model="value" placeholder="请输入搜索关键词" />
     </van-sticky>
 
@@ -53,8 +53,6 @@ export default {
       floorDate: [],
     };
   },
-  computed: {},
-  watch: {},
   methods: {
     async getData() {
       this.swiperDate = await getSwiper();
@@ -65,14 +63,6 @@ export default {
   created() {
     this.getData();
   },
-  mounted() {},
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
 };
 </script>
 <style lang="scss" scoped>

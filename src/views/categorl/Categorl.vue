@@ -2,7 +2,12 @@
 <template>
   <div class="">
     <van-sticky :offset-top="0">
-      <van-nav-bar title="商品列表" left-text="返回" left-arrow @click-left="onClickLeft" />
+      <van-nav-bar
+        :title="$t('title.categorl')"
+        :left-text="$t('back')"
+        left-arrow
+        @click-left="onClickLeft"
+      />
       <van-search v-model="value" placeholder="请输入搜索关键词" />
     </van-sticky>
 
@@ -41,15 +46,15 @@ export default {
       return [];
     },
   },
-  watch: {},
   methods: {
     onClickLeft() {
       this.$router.go(-1);
     },
     async getDate() {
       this.tabData = [];
-      this.tabData = await getTabGoods({ cid: this.$route.query.cid });
-
+      this.tabData = await getTabGoods({
+        cid: this.$route.query.cid,
+      });
       this.tabChange(0);
     },
     tabChange(name) {
@@ -67,20 +72,18 @@ export default {
       }
     },
     cardClick(id) {
-      this.$router.push({ path: '/detail', query: { id: id } });
+      this.$router.push({
+        path: '/detail',
+        query: {
+          id: id,
+        },
+      });
     },
   },
   created() {
     this.getDate();
   },
-  mounted() {},
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
 };
 </script>
+
 <style lang="scss" scoped></style>

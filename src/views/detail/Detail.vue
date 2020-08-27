@@ -2,7 +2,12 @@
 <template>
   <div class="">
     <van-sticky :offset-top="0">
-      <van-nav-bar title="商品详情" left-text="返回" left-arrow @click-left="onClickLeft" />
+      <van-nav-bar
+        :title="$t('title.detail')"
+        :left-text="$t('back')"
+        left-arrow
+        @click-left="onClickLeft"
+      />
     </van-sticky>
     <van-swipe class="my-swipe" :autoplay="3000" indicator-color="white">
       <van-swipe-item v-for="(item, index) in goodData.pics" :key="index">
@@ -52,12 +57,6 @@ export default {
     },
   },
   computed: {
-    // tabGoods() {
-    //   if (this.tabData && this.tabData.goods) {
-    //     return this.tabData.goods.filter(good => good.goods_small_logo);
-    //   }
-    //   return [];
-    // },
     isCollect() {
       let idx = 0;
       let collectList = this.$store.state.collectList;
@@ -70,7 +69,6 @@ export default {
       return Boolean(idx);
     },
   },
-  watch: {},
   methods: {
     onClickLeft() {
       this.$router.go(-1);
@@ -94,14 +92,6 @@ export default {
   created() {
     this.getDate();
   },
-  mounted() {},
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
 };
 </script>
 <style lang="scss" scoped>

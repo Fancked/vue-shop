@@ -2,7 +2,7 @@
 <template>
   <div class="home-page">
     <van-sticky :offset-top="0">
-      <van-nav-bar title="商品分类" />
+      <van-nav-bar :title="$t('title.category')" />
       <van-search v-model="value" placeholder="请输入搜索关键词" />
     </van-sticky>
 
@@ -61,7 +61,6 @@ export default {
       return [];
     },
   },
-  watch: {},
   methods: {
     async getData() {
       this.categories = [];
@@ -74,14 +73,6 @@ export default {
   created() {
     this.getData();
   },
-  mounted() {},
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
 };
 </script>
 <style lang="scss" scoped>

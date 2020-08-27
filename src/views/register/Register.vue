@@ -1,7 +1,7 @@
 <!--  -->
 <template>
 <div class="">
-  <van-nav-bar title="账号注册" left-text="返回" left-arrow @click-left="onClickLeft" />
+  <van-nav-bar :title="$t('title.register')" :left-text="$t('back')" left-arrow @click-left="onClickLeft" />
   <van-field v-model="tel" type="tel" label="手机号" required placeholder="请输入手机号" />
   <van-field v-model="password" type="password" label="密码" required placeholder="密码" />
   <van-field v-model="password1" type="password" label="密码" required placeholder="确认密码" />
@@ -19,8 +19,6 @@ export default {
       password1: '',
     };
   },
-  computed: {},
-  watch: {},
   methods: {
     onClickLeft() {
       this.$router.go(-1);
@@ -45,15 +43,6 @@ export default {
       }
     },
   },
-  created() {},
-  mounted() {},
-  beforeCreate() {},
-  beforeMount() {},
-  beforeUpdate() {},
-  updated() {},
-  beforeDestroy() {},
-  destroyed() {},
-  activated() {},
 };
 </script>
 
